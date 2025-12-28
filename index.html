@@ -1,1 +1,231 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Count down 2 see u 💜</title>
+
+  <style>
+    :root{
+      --bg1:#0b0b10;
+      --bg2:#2a0f3a;
+      --card: rgba(0,0,0,.55);
+      --accent:#d58cff;
+      --accent2:#ffb3ff;
+    }
+
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:
+        radial-gradient(900px 600px at 20% 10%, #2f1142, transparent),
+        radial-gradient(900px 600px at 80% 90%, #1a1a2a, transparent),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      color:#fff;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    }
+
+    .card{
+      width:min(520px, 100%);
+      background: var(--card);
+      border-radius:24px;
+      padding:26px 22px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    h1{
+      margin:0 0 6px;
+      font-size:22px;
+      color: var(--accent);
+      text-align:center;
+    }
+
+    .sub{
+      margin:0 0 18px;
+      font-size:14px;
+      opacity:.85;
+      text-align:center;
+    }
+
+    .counter{
+      display:flex;
+      gap:10px;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+
+    .pill{
+      flex:1;
+      background: rgba(255,255,255,.06);
+      border-radius:18px;
+      padding:14px 10px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,.1);
+    }
+
+    .num{
+      font-size:34px;
+      font-weight:800;
+      line-height:1;
+    }
+
+    .lbl{
+      margin-top:6px;
+      font-size:12px;
+      opacity:.8;
+    }
+
+    .phrase{
+      font-size:16px;
+      line-height:1.45;
+      color: var(--accent2);
+      text-align:center;
+      margin:10px 0 6px;
+    }
+
+    .meta{
+      font-size:12px;
+      opacity:.7;
+      text-align:center;
+    }
+
+    .footer{
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      font-size:12px;
+    }
+
+    .tag{
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(213,140,255,.12);
+      border:1px solid rgba(213,140,255,.25);
+    }
+
+    button{
+      border:none;
+      border-radius:999px;
+      padding:8px 12px;
+      cursor:pointer;
+      background: rgba(255,255,255,.12);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:600;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>🖤💜 Count down 2 see u 💜🖤</h1>
+    <p class="sub">
+      Cada día que pasa, falta menos para vernos.
+    </p>
+
+    <div class="counter">
+      <div class="pill">
+        <div class="num" id="days">—</div>
+        <div class="lbl">días</div>
+      </div>
+      <div class="pill">
+        <div class="num" id="hours">—</div>
+        <div class="lbl">horas</div>
+      </div>
+      <div class="pill">
+        <div class="num" id="mins">—</div>
+        <div class="lbl">min</div>
+      </div>
+    </div>
+
+    <p class="phrase" id="phrase">—</p>
+    <p class="meta" id="meta">—</p>
+
+    <div class="footer">
+      <div class="tag">📅 10 de abril</div>
+      <button onclick="copyPhrase()">Copiar frase 💌</button>
+    </div>
+  </div>
+
+  <script>
+    // 👉 AJUSTA EL AÑO SI ES NECESARIO
+    const targetDate = new Date("2026-04-10T00:00:00");
+
+    const phrases = [
+      { text: "Kuromi dice que hoy también piensa en ti 🖤💜", source: "Kuromi mode" },
+      { text: "Falta menos para mi lugar favorito: tus brazos.", source: "—" },
+      { text: "Te elijo hoy, mañana y todos los días que falten.", source: "—" },
+      { text: "Nuestro amor también tiene cuenta regresiva.", source: "—" },
+      { text: "Cada día sin ti cuenta… pero cada día nos acerca.", source: "—" },
+      { text: "Mi plan travieso: verte, abrazarte y no soltarte.", source: "Kuromi approved" },
+
+      { text: "“Grow old with me! The best is yet to be.”", source: "Robert Browning" },
+      { text: "“I would rather share one lifetime with you…”", source: "Arwen · LOTR" },
+      { text: "“Whatever our souls are made of, his and mine are the same.”", source: "Emily Brontë" },
+      { text: "“Love is a single soul inhabiting two bodies.”", source: "Atribuida a Aristóteles" }
+    ];
+
+    function pad(n){
+      return String(n).padStart(2, "0");
+    }
+
+    function updateCounter(){
+      const now = new Date();
+      const diff = targetDate - now;
+
+      if(diff <= 0){
+        document.getElementById("days").innerText = "0";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("mins").innerText = "00";
+        document.getElementById("phrase").innerText = "Hoy nos vemos 💞";
+        document.getElementById("meta").innerText = "Momento IRL desbloqueado.";
+        return;
+      }
+
+      const totalMinutes = Math.floor(diff / (1000 * 60));
+      const days = Math.floor(totalMinutes / (60 * 24));
+      const hours = Math.floor((totalMinutes - days * 24 * 60) / 60);
+      const mins = totalMinutes % 60;
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = pad(hours);
+      document.getElementById("mins").innerText = pad(mins);
+    }
+
+    function setDailyPhrase(){
+      const today = new Date();
+      const dayKey = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      ).getTime();
+
+      const index =
+        Math.floor(dayKey / (1000 * 60 * 60 * 24)) % phrases.length;
+
+      document.getElementById("phrase").innerText = phrases[index].text;
+      document.getElementById("meta").innerText = phrases[index].source;
+    }
+
+    function copyPhrase(){
+      const text = document.getElementById("phrase").innerText;
+      navigator.clipboard.writeText(text);
+      alert("Frase copiada 💜");
+    }
+
+    setDailyPhrase();
+    updateCounter();
+    setInterval(updateCounter, 10000);
+  </script>
+</body>
+</html>
