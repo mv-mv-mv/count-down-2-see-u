@@ -292,17 +292,12 @@
     // CONFIG
     // ==========================
     const targetDate = new Date("2026-04-10T00:00:00");
-
-    // Zona horaria fija para que el "día" no dependa del cel de cada quien
-    // Cambia a "America/Mexico_City" si prefieres.
     const TZ = "America/Chicago";
-
-    // Tu playlist (se usa como botón "Abrir playlist", pero el "song of the day"
-    // lo haremos con IDs de videos para que cambie DE VERDAD cada día)
+    const START_DAY_ISO = "2025-12-29";
     const playlistId = "RDCLAK5uy_l2CXCpt8bt8t2IQ_6q0M3RuBdk2rxDqJE";
 
     // ==========================
-    // FRASES
+    // PHRASES
     // ==========================
     const phrases = [
       { text: "Kuromi, hoy Manny te piensa en modo: travieso, fiel y bien enamorado 🖤💜", source: "Manny → Kuromi" },
@@ -427,13 +422,8 @@
     ];
 
     // ==========================
-    // CANCIONES DEL DÍA (REEMPLAZA ESTO)
+    // DAILY SONGS (LIST)
     // ==========================
-    // Para que cambie DE VERDAD cada día, pon aquí IDs de videos de YouTube.
-    // TIP: El ID es lo que va después de "v=" en un link, ej:
-    // https://www.youtube.com/watch?v=dQw4w9WgXcQ -> ID: dQw4w9WgXcQ
-    //
-
     const songs = [
       { id: "Ep1__5toVk4", title: "Canción del día #1", artist: "Artista", tag: "🎶 hoy" },
       { id: "h67RBsoqN5U", title: "Canción del día #2", artist: "Artista", tag: "🎶 hoy" },
@@ -555,35 +545,43 @@
       { id: "REEMPLAZA_ID", title: "Canción del día #118", artist: "Artista", tag: "🎶 hoy" }
     ];
 
-
     // ==========================
-    // UTILIDADES DE FECHA (ANTI-CACHE / ANTI-PESTAÑA ABIERTA)
+    // CACHE UTILS
     // ==========================
     function pad(n){ return String(n).padStart(2, "0"); }
 
-    function dayNumberInTZ(tz = TZ) {
+    function dayNumberForDateInTZ(date, tz = TZ) {
       const parts = new Intl.DateTimeFormat("en-US", {
         timeZone: tz,
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
-      }).formatToParts(new Date());
+      }).formatToParts(date);
 
       const y = Number(parts.find(p => p.type === "year").value);
       const m = Number(parts.find(p => p.type === "month").value) - 1;
       const d = Number(parts.find(p => p.type === "day").value);
 
-      // Día estable en UTC (evita bugs por offsets)
       return Math.floor(Date.UTC(y, m, d) / 86400000);
+    }
+
+    function dayNumberInTZ(tz = TZ) {
+      return dayNumberForDateInTZ(new Date(), tz);
+    }
+
+    const START_DAY_NUM = dayNumberForDateInTZ(new Date(`${START_DAY_ISO}T12:00:00`), TZ);
+
+    function dayIndexInTZ(dayNum = dayNumberInTZ()) {
+      return dayNum - START_DAY_NUM;
     }
 
     let lastDayNum = null;
 
     // ==========================
-    // FRASE DEL DÍA
+    // DAILY PRHASE
     // ==========================
-    function setDailyPhrase(dayNum = dayNumberInTZ()){
-      const idx = ((dayNum % phrases.length) + phrases.length) % phrases.length;
+    function setDailyPhrase(dayIndex = dayIndexInTZ()){
+      const idx = ((dayIndex % phrases.length) + phrases.length) % phrases.length;
       document.getElementById("phrase").innerText = phrases[idx].text;
       document.getElementById("meta").innerText = phrases[idx].source;
     }
@@ -604,30 +602,26 @@
     }
 
     // ==========================
-    // CANCIÓN DEL DÍA (REAL)
+    // SONG OF THE DAY
     // ==========================
-    function setDailySong(dayNum = dayNumberInTZ()){
-      const idx = ((dayNum % songs.length) + songs.length) % songs.length;
+    function setDailySong(dayIndex = dayIndexInTZ()){
+      const idx = ((dayIndex % songs.length) + songs.length) % songs.length;
       const s = songs[idx];
 
-      // Botones de playlist (como extra)
       const musicPlaylistUrl = `https://music.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
-      const ytPlaylistUrl = `https://www.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
       document.getElementById("openPlaylist").href = musicPlaylistUrl;
       document.getElementById("openYoutube").href = `https://www.youtube.com/watch?v=${encodeURIComponent(s.id)}`;
 
-      // UI
-      document.getElementById("songTitle").innerText = `🎵 ${s.title || "Canción del día"}`;
+      const dayLabel = dayIndex + 1;
+      document.getElementById("songTitle").innerText = `🎵 Canción del día #${dayLabel}`;
       document.getElementById("songArtist").innerText = s.artist || "—";
-      document.getElementById("songTag").innerText = s.tag || "🎶 hoy";
+      document.getElementById("songTag").innerText = (s.tag || "🎶 hoy") + ` · #${dayLabel}`;
 
-      // Thumbnail
       const thumb = document.getElementById("thumb");
       thumb.style.display = "block";
       thumb.src = `https://i.ytimg.com/vi/${encodeURIComponent(s.id)}/hqdefault.jpg`;
       thumb.onerror = () => { thumb.style.display = "none"; };
 
-      // Embed del video (no playlist)
       const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(s.id)}?autoplay=0&rel=0`;
 
       const iframe = document.getElementById("player");
@@ -635,7 +629,6 @@
       document.getElementById("fallback").style.display = "none";
       iframe.src = embedUrl;
 
-      // Si el navegador bloquea el embed, mostramos fallback
       let resolved = false;
       const timer = setTimeout(() => {
         if(!resolved){
@@ -650,7 +643,7 @@
     }
 
     // ==========================
-    // CONTADOR
+    // DAILY COUNT
     // ==========================
     function updateCounter(){
       const now = new Date();
@@ -676,15 +669,11 @@
       document.getElementById("countLabel").innerText = "⏳ contando...";
     }
 
-    // ==========================
-    // COPIAR FRASE
-    // ==========================
     async function copyPhrase(){
       const text = document.getElementById("phrase").innerText || "";
       try{
         await navigator.clipboard.writeText(text);
       }catch(e){
-        // fallback viejo
         const ta = document.createElement("textarea");
         ta.value = text;
         document.body.appendChild(ta);
@@ -694,27 +683,22 @@
       }
     }
 
-    // ==========================
-    // ANTI-PESTAÑA ABIERTA: CAMBIO DE DÍA AUTOMÁTICO
-    // ==========================
+
     function tickDaily(){
-      const d = dayNumberInTZ();
-      if (d !== lastDayNum){
-        lastDayNum = d;
-        setDailyPhrase(d);
-        setDailySong(d);
+      const dayNum = dayNumberInTZ(); 
+      if (dayNum !== lastDayNum){
+        lastDayNum = dayNum;
+        const dayIndex = dayIndexInTZ(dayNum); 
+        setDailyPhrase(dayIndex);
+        setDailySong(dayIndex);
       }
     }
 
-    // Inicial
     tickDaily();
     updateCounter();
+    setInterval(updateCounter, 1000 * 10); 
+    setInterval(tickDaily, 30000);       
 
-    // Updates
-    setInterval(updateCounter, 1000 * 10); // contador cada 10s
-    setInterval(tickDaily, 30000);         // revisa cambio de día cada 30s
-
-    // Cuando vuelve el foco a la pestaña, revalida (por si el móvil "duerme")
     document.addEventListener("visibilitychange", () => {
       if(!document.hidden){
         tickDaily();
