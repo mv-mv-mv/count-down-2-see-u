@@ -288,145 +288,194 @@
   </div>
 
   <script>
+    // ==========================
+    // CONFIG
+    // ==========================
     const targetDate = new Date("2026-04-10T00:00:00");
+
+    // Zona horaria fija para que el "día" no dependa del cel de cada quien
+    // Cambia a "America/Mexico_City" si prefieres.
+    const TZ = "America/Chicago";
+
+    // Tu playlist (se usa como botón "Abrir playlist", pero el "song of the day"
+    // lo haremos con IDs de videos para que cambie DE VERDAD cada día)
     const playlistId = "RDCLAK5uy_l2CXCpt8bt8t2IQ_6q0M3RuBdk2rxDqJE";
 
-
+    // ==========================
+    // FRASES
+    // ==========================
     const phrases = [
-        { text: "Kuromi, hoy Manny te piensa en modo: travieso, fiel y bien enamorado 🖤💜", source: "Manny → Kuromi" },
-        { text: "Falta menos para mi lugar favorito: tus brazos.", source: "Manny → Kuromi" },
-        { text: "Hoy me acuerdo de tu voz y se me arregla el día completo.", source: "Manny → Kuromi" },
-        { text: "Te elijo hoy, mañana y todos los días que falten.", source: "Manny → Kuromi" },
-        { text: "Mi plan malvado: verte, abrazarte… y repetir 😼💜", source: "Manny → Kuromi" },
-        { text: "Eres mi casualidad favorita convertida en destino.", source: "Manny → Kuromi" },
-        { text: "Kuromi: cada día menos… y cada día más enamorado.", source: "Manny → Kuromi" },
-        { text: "Cuando te vea, el mundo se va a quedar callado. Yo te abrazo.", source: "Manny → Kuromi" },
-        { text: "Eres la dueña de todos mis suspiros (y de mis travesuras).", source: "Manny → Kuromi" },
-        { text: "Mi corazón late en código morado por ti 💜", source: "Manny → Kuromi" },
-        { text: "No hay distancia que le gane a lo que siento por mi Kuromi.", source: "Manny → Kuromi" },
-        { text: "Eres mi notificación favorita en la pantalla y en la vida.", source: "Manny → Kuromi" },
-        { text: "Si me dieran a elegir, te volvería a elegir mil veces más.", source: "Manny → Kuromi" },
-        { text: "Tu locura encaja perfectamente con la mía 💀🖤", source: "Manny → Kuromi" },
-        { text: "Manny reportándose: extrañándote niveles industriales.", source: "Manny → Kuromi" },
-        { text: "Ya quiero ver esa sonrisita que me reinicia la vida.", source: "Manny → Kuromi" },
-        { text: "Eres mi caos favorito y mi paz más bonita.", source: "Manny → Kuromi" },
-        { text: "Cuento los días, las horas y hasta los parpadeos para verte.", source: "Manny → Kuromi" },
-        { text: "Tengo un beso guardado que lleva tu nombre.", source: "Manny → Kuromi" },
-        { text: "Eres la parte más bonita de mi historia.", source: "Manny → Kuromi" },
-        { text: "Contigo, hasta el infierno sería divertido 🔥💜", source: "Manny → Kuromi" },
-        { text: "Mi lugar feliz no es un sitio, eres tú.", source: "Manny → Kuromi" },
-        { text: "Te pienso y automáticamente sonrío. Es magia (o eres tú).", source: "Manny → Kuromi" },
-        { text: "Nadie me mira como tú, nadie me quiere como yo a ti.", source: "Manny → Kuromi" },
-        { text: "Kuromi, prepárate, porque tengo acumulados mil abrazos.", source: "Manny → Kuromi" },
-        { text: "Eres mi vicio más sano y mi tentación más dulce.", source: "Manny → Kuromi" },
-        { text: "El mundo es muy grande, pero yo solo quepo en tus brazos.", source: "Manny → Kuromi" },
-        { text: "Hoy te quiero más que ayer, pero menos que mañana.", source: "Manny → Kuromi" },
-        { text: "Eres la jefa de mi corazón, sin discusión 😼", source: "Manny → Kuromi" },
-        { text: "Me robaste el corazón, pero te dejo que te lo quedes.", source: "Manny → Kuromi" },
-        { text: "Soñé contigo y desperté con ganas de hacer el sueño realidad.", source: "Manny → Kuromi" },
-        { text: "Eres mi villana favorita en este cuento de amor 🖤", source: "Manny → Kuromi" },
-        { text: "Lo nuestro es química, física y magia negra de la buena.", source: "Manny → Kuromi" },
-        { text: "Tu amor es el único hechizo del que no quiero cura.", source: "Manny → Kuromi" },
-        { text: "Manny está 100% disponible para amarte hoy.", source: "Manny → Kuromi" },
-        { text: "Si fueras una canción, te escucharía en bucle todo el día.", source: "Manny → Kuromi" },
-        { text: "Te extraño como se extraña al aire bajo el agua.", source: "Manny → Kuromi" },
-        { text: "Eres pequeña, pero ocupas todo mi corazón.", source: "Manny → Kuromi" },
-        { text: "Mi plan de vida: Tú, yo, y muchas travesuras.", source: "Manny → Kuromi" },
-        { text: "Cada segundo lejos es un segundo perdido.", source: "Manny → Kuromi" },
-        { text: "Eres mi 'para siempre' en un mundo de 'un rato'.", source: "Manny → Kuromi" },
-        { text: "Te quiero con todo, incluso con tu lado dark 🖤", source: "Manny → Kuromi" },
-        { text: "Eres la única persona capaz de domar a este loco.", source: "Manny → Kuromi" },
-        { text: "Hoy desperté con ganas de ti. (Nota: aplica todos los días).", source: "Manny → Kuromi" },
-        { text: "Mi meta: ser la razón por la que mires el cel y sonrías.", source: "Manny → Kuromi" },
-        { text: "Te prometo aventuras, lealtad y mucho amor.", source: "Manny → Kuromi" },
-        { text: "Eres el plot twist más bonito de mi vida.", source: "Manny → Kuromi" },
-        { text: "No necesito suerte, ya te tengo a ti.", source: "Manny → Kuromi" },
-        { text: "Tu nombre es mi contraseña para ser feliz.", source: "Manny → Kuromi" },
-        { text: "Eres mi diablilla angelical favorita 😈💜", source: "Manny → Kuromi" },
-        { text: "Te amo desde mi lado oscuro hasta mi luz.", source: "Manny → Kuromi" },
-        { text: "Eres la excepción a todas mis reglas.", source: "Manny → Kuromi" },
-        { text: "Si el destino existe, se lució contigo.", source: "Manny → Kuromi" },
-        { text: "Mis ojos te buscan incluso cuando no estás.", source: "Manny → Kuromi" },
-        { text: "Contigo el tiempo vuela, sin ti se arrastra.", source: "Manny → Kuromi" },
-        { text: "Quiero ser tu cómplice en todo.", source: "Manny → Kuromi" },
-        { text: "Eres el riesgo que siempre quise correr.", source: "Manny → Kuromi" },
-        { text: "Te voy a querer hasta que se acaben los números.", source: "Manny → Kuromi" },
-        { text: "Mi lealtad es tuya, mi corazón también.", source: "Manny → Kuromi" },
-        { text: "Eres mi pensamiento recurrente y mi deseo constante.", source: "Manny → Kuromi" },
-        { text: "Tú pones el caos, yo pongo la calma (o al revés) 😼", source: "Manny → Kuromi" },
-        { text: "En mi cabeza, ya te abracé tres veces hoy.", source: "Manny → Kuromi" },
-        { text: "Eres mi brújula cuando me pierdo.", source: "Manny → Kuromi" },
-        { text: "Te quiero cerquita, tipo: piel con piel.", source: "Manny → Kuromi" },
-        { text: "Eres mi mejor plan para el fin de semana y para la vida.", source: "Manny → Kuromi" },
-        { text: "Solo tú tienes la llave de este loquero.", source: "Manny → Kuromi" },
-        { text: "Te amo más que a dormir (y eso es mucho).", source: "Manny → Kuromi" },
-        { text: "Eres mi dosis diaria de felicidad.", source: "Manny → Kuromi" },
-        { text: "Manny sin Kuromi es como un día sin noche.", source: "Manny → Kuromi" },
-        { text: "Me gustas más que el café de la mañana ☕💜", source: "Manny → Kuromi" },
-        { text: "Prometo hacerte reír hasta que te duela la panza.", source: "Manny → Kuromi" },
-        { text: "Eres la única que manda en mi desorden.", source: "Manny → Kuromi" },
-        { text: "Tu amor me hace invencible.", source: "Manny → Kuromi" },
-        { text: "Quiero coleccionar momentos contigo.", source: "Manny → Kuromi" },
-        { text: "Eres mi refugio seguro en días de tormenta.", source: "Manny → Kuromi" },
-        { text: "Te pienso, luego existo.", source: "Manny → Kuromi" },
-        { text: "Tus besos son mi medicina.", source: "Manny → Kuromi" },
-        { text: "Quiero envejecer molestándote con amor.", source: "Manny → Kuromi" },
-        { text: "Eres mi todo, en resumen.", source: "Manny → Kuromi" },
-        { text: "Haces que mi mundo gire más bonito.", source: "Manny → Kuromi" },
-        { text: "Te quiero para mis días buenos y mis días malos.", source: "Manny → Kuromi" },
-        { text: "Eres el único 'en línea' que espero ver.", source: "Manny → Kuromi" },
-        { text: "Me tienes ganado, perdido y enamorado.", source: "Manny → Kuromi" },
-        { text: "Eres mi debilidad más fuerte.", source: "Manny → Kuromi" },
-        { text: "Tú y yo: el equipo perfecto para el desastre 💜🖤", source: "Manny → Kuromi" },
-        { text: "Te escogería a ti en cualquier vida.", source: "Manny → Kuromi" },
-        { text: "Eres mi sueño lúcido.", source: "Manny → Kuromi" },
-        { text: "Cada 'te amo' se queda corto.", source: "Manny → Kuromi" },
-        { text: "Eres la reina de mi castillo oscuro.", source: "Manny → Kuromi" },
-        { text: "No quiero a nadie más, solo a mi Kuromi.", source: "Manny → Kuromi" },
-        { text: "Me haces sentir cosas que no tienen nombre.", source: "Manny → Kuromi" },
-        { text: "Eres mi persona favorita en el universo.", source: "Manny → Kuromi" },
-        { text: "Contigo, lo cotidiano se vuelve mágico.", source: "Manny → Kuromi" },
-        { text: "Te amo con locura y sin cura.", source: "Manny → Kuromi" },
-        { text: "Eres el motivo de mis desvelos bonitos.", source: "Manny → Kuromi" },
-        { text: "Tu voz es mi sonido favorito.", source: "Manny → Kuromi" },
-        { text: "Manny promete cuidarte el corazón siempre.", source: "Manny → Kuromi" },
-        { text: "Eres mi poema favorito que nunca termino de leer.", source: "Manny → Kuromi" },
-        { text: "Juntos somos dinamita pura 💥", source: "Manny → Kuromi" },
-        { text: "Te quiero libre, loca y mía.", source: "Manny → Kuromi" },
-        { text: "Mi corazón hace 'boom' cuando te veo.", source: "Manny → Kuromi" },
-        { text: "Eres mi tesoro más valioso.", source: "Manny → Kuromi" },
-        { text: "No te cambio por nada ni por nadie.", source: "Manny → Kuromi" },
-        { text: "Eres la dueña de mis contraseñas y mi alma.", source: "Manny → Kuromi" },
-        { text: "Te amo más allá de las palabras.", source: "Manny → Kuromi" },
-        { text: "Eres mi sol en días grises y mi luna en la noche.", source: "Manny → Kuromi" },
-        { text: "Quiero ser el motivo de tu sonrojo.", source: "Manny → Kuromi" },
-        { text: "Eres perfecta en tus imperfecciones.", source: "Manny → Kuromi" },
-        { text: "Te sigo a donde sea, mi líder Kuromi.", source: "Manny → Kuromi" },
-        { text: "Nuestro amor es de otra galaxia 🌌💜", source: "Manny → Kuromi" },
-        { text: "Cada día confirmo que eres el amor de mi vida.", source: "Manny → Kuromi" },
-        { text: "Te extraño más de lo que admito.", source: "Manny → Kuromi" },
-        { text: "Eres mi inspiración diaria.", source: "Manny → Kuromi" },
-        { text: "Tú me completas de verdad.", source: "Manny → Kuromi" },
-        { text: "Eres mi mejor historia de amor.", source: "Manny → Kuromi" },
-        { text: "Te quiero, te adoro y te extraño.", source: "Manny → Kuromi" },
-        { text: "Eres la magia que le faltaba a mi vida.", source: "Manny → Kuromi" },
-        { text: "Siempre tú, siempre nosotros.", source: "Manny → Kuromi" },
-        { text: "Fin del comunicado: Te amo, Kuromi.", source: "Manny → Kuromi" }
+      { text: "Kuromi, hoy Manny te piensa en modo: travieso, fiel y bien enamorado 🖤💜", source: "Manny → Kuromi" },
+      { text: "Falta menos para mi lugar favorito: tus brazos.", source: "Manny → Kuromi" },
+      { text: "Hoy me acuerdo de tu voz y se me arregla el día completo.", source: "Manny → Kuromi" },
+      { text: "Te elijo hoy, mañana y todos los días que falten.", source: "Manny → Kuromi" },
+      { text: "Mi plan malvado: verte, abrazarte… y repetir 😼💜", source: "Manny → Kuromi" },
+      { text: "Eres mi casualidad favorita convertida en destino.", source: "Manny → Kuromi" },
+      { text: "Kuromi: cada día menos… y cada día más enamorado.", source: "Manny → Kuromi" },
+      { text: "Cuando te vea, el mundo se va a quedar callado. Yo te abrazo.", source: "Manny → Kuromi" },
+      { text: "Eres la dueña de todos mis suspiros (y de mis travesuras).", source: "Manny → Kuromi" },
+      { text: "Mi corazón late en código morado por ti 💜", source: "Manny → Kuromi" },
+      { text: "No hay distancia que le gane a lo que siento por mi Kuromi.", source: "Manny → Kuromi" },
+      { text: "Eres mi notificación favorita en la pantalla y en la vida.", source: "Manny → Kuromi" },
+      { text: "Si me dieran a elegir, te volvería a elegir mil veces más.", source: "Manny → Kuromi" },
+      { text: "Tu locura encaja perfectamente con la mía 💀🖤", source: "Manny → Kuromi" },
+      { text: "Manny reportándose: extrañándote niveles industriales.", source: "Manny → Kuromi" },
+      { text: "Ya quiero ver esa sonrisita que me reinicia la vida.", source: "Manny → Kuromi" },
+      { text: "Eres mi caos favorito y mi paz más bonita.", source: "Manny → Kuromi" },
+      { text: "Cuento los días, las horas y hasta los parpadeos para verte.", source: "Manny → Kuromi" },
+      { text: "Tengo un beso guardado que lleva tu nombre.", source: "Manny → Kuromi" },
+      { text: "Eres la parte más bonita de mi historia.", source: "Manny → Kuromi" },
+      { text: "Contigo, hasta el infierno sería divertido 🔥💜", source: "Manny → Kuromi" },
+      { text: "Mi lugar feliz no es un sitio, eres tú.", source: "Manny → Kuromi" },
+      { text: "Te pienso y automáticamente sonrío. Es magia (o eres tú).", source: "Manny → Kuromi" },
+      { text: "Nadie me mira como tú, nadie me quiere como yo a ti.", source: "Manny → Kuromi" },
+      { text: "Kuromi, prepárate, porque tengo acumulados mil abrazos.", source: "Manny → Kuromi" },
+      { text: "Eres mi vicio más sano y mi tentación más dulce.", source: "Manny → Kuromi" },
+      { text: "El mundo es muy grande, pero yo solo quepo en tus brazos.", source: "Manny → Kuromi" },
+      { text: "Hoy te quiero más que ayer, pero menos que mañana.", source: "Manny → Kuromi" },
+      { text: "Eres la jefa de mi corazón, sin discusión 😼", source: "Manny → Kuromi" },
+      { text: "Me robaste el corazón, pero te dejo que te lo quedes.", source: "Manny → Kuromi" },
+      { text: "Soñé contigo y desperté con ganas de hacer el sueño realidad.", source: "Manny → Kuromi" },
+      { text: "Eres mi villana favorita en este cuento de amor 🖤", source: "Manny → Kuromi" },
+      { text: "Lo nuestro es química, física y magia negra de la buena.", source: "Manny → Kuromi" },
+      { text: "Tu amor es el único hechizo del que no quiero cura.", source: "Manny → Kuromi" },
+      { text: "Manny está 100% disponible para amarte hoy.", source: "Manny → Kuromi" },
+      { text: "Si fueras una canción, te escucharía en bucle todo el día.", source: "Manny → Kuromi" },
+      { text: "Te extraño como se extraña al aire bajo el agua.", source: "Manny → Kuromi" },
+      { text: "Eres pequeña, pero ocupas todo mi corazón.", source: "Manny → Kuromi" },
+      { text: "Mi plan de vida: Tú, yo, y muchas travesuras.", source: "Manny → Kuromi" },
+      { text: "Cada segundo lejos es un segundo perdido.", source: "Manny → Kuromi" },
+      { text: "Eres mi 'para siempre' en un mundo de 'un rato'.", source: "Manny → Kuromi" },
+      { text: "Te quiero con todo, incluso con tu lado dark 🖤", source: "Manny → Kuromi" },
+      { text: "Eres la única persona capaz de domar a este loco.", source: "Manny → Kuromi" },
+      { text: "Hoy desperté con ganas de ti. (Nota: aplica todos los días).", source: "Manny → Kuromi" },
+      { text: "Mi meta: ser la razón por la que mires el cel y sonrías.", source: "Manny → Kuromi" },
+      { text: "Te prometo aventuras, lealtad y mucho amor.", source: "Manny → Kuromi" },
+      { text: "Eres el plot twist más bonito de mi vida.", source: "Manny → Kuromi" },
+      { text: "No necesito suerte, ya te tengo a ti.", source: "Manny → Kuromi" },
+      { text: "Tu nombre es mi contraseña para ser feliz.", source: "Manny → Kuromi" },
+      { text: "Eres mi diablilla angelical favorita 😈💜", source: "Manny → Kuromi" },
+      { text: "Te amo desde mi lado oscuro hasta mi luz.", source: "Manny → Kuromi" },
+      { text: "Eres la excepción a todas mis reglas.", source: "Manny → Kuromi" },
+      { text: "Si el destino existe, se lució contigo.", source: "Manny → Kuromi" },
+      { text: "Mis ojos te buscan incluso cuando no estás.", source: "Manny → Kuromi" },
+      { text: "Contigo el tiempo vuela, sin ti se arrastra.", source: "Manny → Kuromi" },
+      { text: "Quiero ser tu cómplice en todo.", source: "Manny → Kuromi" },
+      { text: "Eres el riesgo que siempre quise correr.", source: "Manny → Kuromi" },
+      { text: "Te voy a querer hasta que se acaben los números.", source: "Manny → Kuromi" },
+      { text: "Mi lealtad es tuya, mi corazón también.", source: "Manny → Kuromi" },
+      { text: "Eres mi pensamiento recurrente y mi deseo constante.", source: "Manny → Kuromi" },
+      { text: "Tú pones el caos, yo pongo la calma (o al revés) 😼", source: "Manny → Kuromi" },
+      { text: "En mi cabeza, ya te abracé tres veces hoy.", source: "Manny → Kuromi" },
+      { text: "Eres mi brújula cuando me pierdo.", source: "Manny → Kuromi" },
+      { text: "Te quiero cerquita, tipo: piel con piel.", source: "Manny → Kuromi" },
+      { text: "Eres mi mejor plan para el fin de semana y para la vida.", source: "Manny → Kuromi" },
+      { text: "Solo tú tienes la llave de este loquero.", source: "Manny → Kuromi" },
+      { text: "Te amo más que a dormir (y eso es mucho).", source: "Manny → Kuromi" },
+      { text: "Eres mi dosis diaria de felicidad.", source: "Manny → Kuromi" },
+      { text: "Manny sin Kuromi es como un día sin noche.", source: "Manny → Kuromi" },
+      { text: "Me gustas más que el café de la mañana ☕💜", source: "Manny → Kuromi" },
+      { text: "Prometo hacerte reír hasta que te duela la panza.", source: "Manny → Kuromi" },
+      { text: "Eres la única que manda en mi desorden.", source: "Manny → Kuromi" },
+      { text: "Tu amor me hace invencible.", source: "Manny → Kuromi" },
+      { text: "Quiero coleccionar momentos contigo.", source: "Manny → Kuromi" },
+      { text: "Eres mi refugio seguro en días de tormenta.", source: "Manny → Kuromi" },
+      { text: "Te pienso, luego existo.", source: "Manny → Kuromi" },
+      { text: "Tus besos son mi medicina.", source: "Manny → Kuromi" },
+      { text: "Quiero envejecer molestándote con amor.", source: "Manny → Kuromi" },
+      { text: "Eres mi todo, en resumen.", source: "Manny → Kuromi" },
+      { text: "Haces que mi mundo gire más bonito.", source: "Manny → Kuromi" },
+      { text: "Te quiero para mis días buenos y mis días malos.", source: "Manny → Kuromi" },
+      { text: "Eres el único 'en línea' que espero ver.", source: "Manny → Kuromi" },
+      { text: "Me tienes ganado, perdido y enamorado.", source: "Manny → Kuromi" },
+      { text: "Eres mi debilidad más fuerte.", source: "Manny → Kuromi" },
+      { text: "Tú y yo: el equipo perfecto para el desastre 💜🖤", source: "Manny → Kuromi" },
+      { text: "Te escogería a ti en cualquier vida.", source: "Manny → Kuromi" },
+      { text: "Eres mi sueño lúcido.", source: "Manny → Kuromi" },
+      { text: "Cada 'te amo' se queda corto.", source: "Manny → Kuromi" },
+      { text: "Eres la reina de mi castillo oscuro.", source: "Manny → Kuromi" },
+      { text: "No quiero a nadie más, solo a mi Kuromi.", source: "Manny → Kuromi" },
+      { text: "Me haces sentir cosas que no tienen nombre.", source: "Manny → Kuromi" },
+      { text: "Eres mi persona favorita en el universo.", source: "Manny → Kuromi" },
+      { text: "Contigo, lo cotidiano se vuelve mágico.", source: "Manny → Kuromi" },
+      { text: "Te amo con locura y sin cura.", source: "Manny → Kuromi" },
+      { text: "Eres el motivo de mis desvelos bonitos.", source: "Manny → Kuromi" },
+      { text: "Tu voz es mi sonido favorito.", source: "Manny → Kuromi" },
+      { text: "Manny promete cuidarte el corazón siempre.", source: "Manny → Kuromi" },
+      { text: "Eres mi poema favorito que nunca termino de leer.", source: "Manny → Kuromi" },
+      { text: "Juntos somos dinamita pura 💥", source: "Manny → Kuromi" },
+      { text: "Te quiero libre, loca y mía.", source: "Manny → Kuromi" },
+      { text: "Mi corazón hace 'boom' cuando te veo.", source: "Manny → Kuromi" },
+      { text: "Eres mi tesoro más valioso.", source: "Manny → Kuromi" },
+      { text: "No te cambio por nada ni por nadie.", source: "Manny → Kuromi" },
+      { text: "Eres la dueña de mis contraseñas y mi alma.", source: "Manny → Kuromi" },
+      { text: "Te amo más allá de las palabras.", source: "Manny → Kuromi" },
+      { text: "Eres mi sol en días grises y mi luna en la noche.", source: "Manny → Kuromi" },
+      { text: "Quiero ser el motivo de tu sonrojo.", source: "Manny → Kuromi" },
+      { text: "Eres perfecta en tus imperfecciones.", source: "Manny → Kuromi" },
+      { text: "Te sigo a donde sea, mi líder Kuromi.", source: "Manny → Kuromi" },
+      { text: "Nuestro amor es de otra galaxia 🌌💜", source: "Manny → Kuromi" },
+      { text: "Cada día confirmo que eres el amor de mi vida.", source: "Manny → Kuromi" },
+      { text: "Te extraño más de lo que admito.", source: "Manny → Kuromi" },
+      { text: "Eres mi inspiración diaria.", source: "Manny → Kuromi" },
+      { text: "Tú me completas de verdad.", source: "Manny → Kuromi" },
+      { text: "Eres mi mejor historia de amor.", source: "Manny → Kuromi" },
+      { text: "Te quiero, te adoro y te extraño.", source: "Manny → Kuromi" },
+      { text: "Eres la magia que le faltaba a mi vida.", source: "Manny → Kuromi" },
+      { text: "Siempre tú, siempre nosotros.", source: "Manny → Kuromi" },
+      { text: "Fin del comunicado: Te amo, Kuromi.", source: "Manny → Kuromi" }
     ];
 
+    // ==========================
+    // CANCIONES DEL DÍA (REEMPLAZA ESTO)
+    // ==========================
+    // Para que cambie DE VERDAD cada día, pon aquí IDs de videos de YouTube.
+    // TIP: El ID es lo que va después de "v=" en un link, ej:
+    // https://www.youtube.com/watch?v=dQw4w9WgXcQ -> ID: dQw4w9WgXcQ
+    //
+    // Dejo ejemplos placeholder. Cámbialos sí o sí.
+    const songs = [
+      { id: "rNJn8dWjsCA", title: "Canción del día #1", artist: "Artista", tag: "🎶 hoy" },
+      { id: "ARxl6giP1yU", title: "Canción del día #2", artist: "Artista", tag: "🎶 hoy" },
+      { id: "ghAvJMxE1qo", title: "Canción del día #3", artist: "Artista", tag: "🎶 hoy" },
+      { id: "rNJn8dWjsCA", title: "Canción del día #4", artist: "Artista", tag: "🎶 hoy" }
+    ];
+
+    // ==========================
+    // UTILIDADES DE FECHA (ANTI-CACHE / ANTI-PESTAÑA ABIERTA)
+    // ==========================
     function pad(n){ return String(n).padStart(2, "0"); }
 
-    function dayKey(){
-      const t = new Date();
-      return new Date(t.getFullYear(), t.getMonth(), t.getDate()).getTime();
+    function dayNumberInTZ(tz = TZ) {
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: tz,
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).formatToParts(new Date());
+
+      const y = Number(parts.find(p => p.type === "year").value);
+      const m = Number(parts.find(p => p.type === "month").value) - 1;
+      const d = Number(parts.find(p => p.type === "day").value);
+
+      // Día estable en UTC (evita bugs por offsets)
+      return Math.floor(Date.UTC(y, m, d) / 86400000);
     }
 
-    function setDailyPhrase(){
-      const idx = Math.floor(dayKey() / (1000*60*60*24)) % phrases.length;
+    let lastDayNum = null;
+
+    // ==========================
+    // FRASE DEL DÍA
+    // ==========================
+    function setDailyPhrase(dayNum = dayNumberInTZ()){
+      const idx = ((dayNum % phrases.length) + phrases.length) % phrases.length;
       document.getElementById("phrase").innerText = phrases[idx].text;
       document.getElementById("meta").innerText = phrases[idx].source;
     }
 
+    // ==========================
+    // FALLBACK PREVIEW
+    // ==========================
     function showFallback(reason){
       const fb = document.getElementById("fallback");
       const wrap = document.getElementById("playerWrap");
@@ -439,31 +488,39 @@
       wrap.style.padding = "0";
     }
 
-    function setDailySong(){
-      const seed = Math.floor(dayKey() / (1000*60*60*24));
+    // ==========================
+    // CANCIÓN DEL DÍA (REAL)
+    // ==========================
+    function setDailySong(dayNum = dayNumberInTZ()){
+      const idx = ((dayNum % songs.length) + songs.length) % songs.length;
+      const s = songs[idx];
 
-      const embedUrl =
-        `https://www.youtube.com/embed/videoseries?list=${encodeURIComponent(playlistId)}&start_radio=1&autoplay=0&seed=${seed}`;
+      // Botones de playlist (como extra)
+      const musicPlaylistUrl = `https://music.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
+      const ytPlaylistUrl = `https://www.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
+      document.getElementById("openPlaylist").href = musicPlaylistUrl;
+      document.getElementById("openYoutube").href = `https://www.youtube.com/watch?v=${encodeURIComponent(s.id)}`;
 
-      const musicUrl = `https://music.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
-      const ytUrl = `https://www.youtube.com/playlist?list=${encodeURIComponent(playlistId)}`;
+      // UI
+      document.getElementById("songTitle").innerText = `🎵 ${s.title || "Canción del día"}`;
+      document.getElementById("songArtist").innerText = s.artist || "—";
+      document.getElementById("songTag").innerText = s.tag || "🎶 hoy";
 
-      document.getElementById("openPlaylist").href = musicUrl;
-      document.getElementById("openYoutube").href = ytUrl;
-
-      document.getElementById("songTitle").innerText = "🎵 Canción del día (mix sorpresa)";
-      document.getElementById("songArtist").innerText = "Si no se ve el preview, es normal en móvil: abre el botón.";
-      document.getElementById("songTag").innerText = "🎶 hoy";
-
+      // Thumbnail
       const thumb = document.getElementById("thumb");
-      thumb.src = "https://i.ytimg.com/vi/FlfHCsIiRKo/hqdefault.jpg";
+      thumb.style.display = "block";
+      thumb.src = `https://i.ytimg.com/vi/${encodeURIComponent(s.id)}/hqdefault.jpg`;
       thumb.onerror = () => { thumb.style.display = "none"; };
+
+      // Embed del video (no playlist)
+      const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(s.id)}?autoplay=0&rel=0`;
 
       const iframe = document.getElementById("player");
       iframe.style.display = "block";
       document.getElementById("fallback").style.display = "none";
       iframe.src = embedUrl;
 
+      // Si el navegador bloquea el embed, mostramos fallback
       let resolved = false;
       const timer = setTimeout(() => {
         if(!resolved){
@@ -477,50 +534,78 @@
       };
     }
 
+    // ==========================
+    // CONTADOR
+    // ==========================
     function updateCounter(){
       const now = new Date();
-      const diff = targetDate - now;
+      const diff = targetDate.getTime() - now.getTime();
 
       if(diff <= 0){
         document.getElementById("days").innerText = "0";
-        document.getElementById("hours").innerText = "00";
-        document.getElementById("mins").innerText = "00";
-        document.getElementById("phrase").innerText = "Hoy te veo, Kuromi. Ya era hora 😼💞";
-        document.getElementById("meta").innerText = "Momento IRL desbloqueado.";
-        document.getElementById("countLabel").innerText = "✅ HOY ES EL DÍA";
+        document.getElementById("hours").innerText = "0";
+        document.getElementById("mins").innerText = "0";
+        document.getElementById("countLabel").innerText = "💜 ¡Hoy! 💜";
         return;
       }
 
-      const totalMinutes = Math.floor(diff / (1000 * 60));
-      const d = Math.floor(totalMinutes / (60 * 24));
-      const h = Math.floor((totalMinutes - d * 24 * 60) / 60);
-      const m = totalMinutes % 60;
+      const totalMins = Math.floor(diff / (1000*60));
+      const days = Math.floor(totalMins / (60*24));
+      const hours = Math.floor((totalMins - days*60*24) / 60);
+      const mins = totalMins - days*60*24 - hours*60;
 
-      document.getElementById("days").innerText = d;
-      document.getElementById("hours").innerText = pad(h);
-      document.getElementById("mins").innerText = pad(m);
-      document.getElementById("countLabel").innerText = "⏳ contando…";
+      document.getElementById("days").innerText = String(days);
+      document.getElementById("hours").innerText = pad(hours);
+      document.getElementById("mins").innerText = pad(mins);
+
+      document.getElementById("countLabel").innerText = "⏳ contando...";
     }
 
-    function copyPhrase(){
-      const text = document.getElementById("phrase").innerText;
-      navigator.clipboard.writeText(text);
-      alert("Frase copiada 💜");
+    // ==========================
+    // COPIAR FRASE
+    // ==========================
+    async function copyPhrase(){
+      const text = document.getElementById("phrase").innerText || "";
+      try{
+        await navigator.clipboard.writeText(text);
+      }catch(e){
+        // fallback viejo
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
     }
 
-    setDailyPhrase();
-    setDailySong();
+    // ==========================
+    // ANTI-PESTAÑA ABIERTA: CAMBIO DE DÍA AUTOMÁTICO
+    // ==========================
+    function tickDaily(){
+      const d = dayNumberInTZ();
+      if (d !== lastDayNum){
+        lastDayNum = d;
+        setDailyPhrase(d);
+        setDailySong(d);
+      }
+    }
+
+    // Inicial
+    tickDaily();
     updateCounter();
 
-    setInterval(updateCounter, 10000);
+    // Updates
+    setInterval(updateCounter, 1000 * 10); // contador cada 10s
+    setInterval(tickDaily, 30000);         // revisa cambio de día cada 30s
 
-    setInterval(() => {
-      const now = new Date();
-      if(now.getHours() === 0 && now.getMinutes() === 0){
-        setDailyPhrase();
-        setDailySong();
+    // Cuando vuelve el foco a la pestaña, revalida (por si el móvil "duerme")
+    document.addEventListener("visibilitychange", () => {
+      if(!document.hidden){
+        tickDaily();
+        updateCounter();
       }
-    }, 30000);
+    });
   </script>
 </body>
 </html>
