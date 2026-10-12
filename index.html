@@ -195,7 +195,7 @@
       gap:8px;
     }
 
-    /* === FRASCO DE PAPELETES === */
+    /* === FRASCO DE papelitos === */
     .jar-section{
       text-align:center;
     }
@@ -259,7 +259,7 @@
   <div class="card">
     <h1>🖤💜 Manny → Kuromi 💜🖤</h1>
     <p class="sub">
-      Eres el amor de mi vida. Ésta es una cuenta regresiva para verte el 21 de diciembre. Cada día te quiero más.
+      Eres el amor de mi vida. Ésta es una cuenta regresiva para verte el DE NUEVO 21 de diciembre. Cada día te quiero más.
     </p>
     <div class="counter">
       <div class="pill">
@@ -308,11 +308,11 @@
   <!-- Frasco de 100 cosas -->
   <div class="card jar-section">
     <h1>💌 100 cosas que me gustan de ti</h1>
-    <p class="sub">Saca un papelete del frasco. Cada uno es único… y después de sacarlo, ya no vuelve a salir. Tómale foto 📸</p>
+    <p class="sub">Saca un papelito del frasco. Cada uno es único… y después de sacarlo, ya no vuelve a salir. Tómale foto 📸</p>
     
     <div class="jar-container">
       <div class="jar" id="jar">
-        <!-- Papeletes decorativos -->
+        <!-- papelitos decorativos -->
         <div class="paper" style="--r:-15deg; top:40px; left:30px;"></div>
         <div class="paper" style="--r:25deg; top:70px; left:90px;"></div>
         <div class="paper" style="--r:-5deg; top:100px; left:50px;"></div>
@@ -322,8 +322,8 @@
       </div>
     </div>
 
-    <p class="remaining" id="remainingText">Quedan 100 papeletes</p>
-    <button id="drawBtn" onclick="drawPaper()">Sacar un papelete ✨</button>
+    <p class="remaining" id="remainingText">Quedan 100 papelitos</p>
+    <button id="drawBtn" onclick="drawPaper()">Sacar un papelito ✨</button>
     
     <div class="drawn-paper" id="drawnPaper"></div>
   </div>
@@ -537,7 +537,7 @@ const songs = [
     function updateRemaining() {
       const left = things.length - drawnIndices.length;
       document.getElementById("remainingText").textContent = 
-        left === 0 ? "¡Ya no quedan papeletes! Te quiero muchísimo 💜" : `Quedan ${left} papeletes`;
+        left === 0 ? "¡Ya no quedan papelitos! Te quiero muchísimo 💜" : `Quedan ${left} papelitos`;
       document.getElementById("drawBtn").disabled = left === 0;
     }
 
