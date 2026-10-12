@@ -3,429 +3,237 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manny 🖤💜 Kuromi | Cuenta regresiva 21 Dic 2026 💜</title>
+  <title>Manny 🖤💜 Kuromi | 21 Dic 2026</title>
   <style>
-    :root{
-      --bg1:#0b0b10;
-      --bg2:#2a0f3a;
+    :root {
+      --bg1: #0b0b10;
+      --bg2: #2a0f3a;
       --card: rgba(0,0,0,.55);
-      --accent:#d58cff;
-      --accent2:#ffb3ff;
+      --accent: #d58cff;
+      --accent2: #ffb3ff;
     }
-    body{
-      margin:0;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
       background:
         radial-gradient(900px 600px at 20% 10%, #2f1142, transparent),
         radial-gradient(900px 600px at 80% 90%, #1a1a2a, transparent),
         linear-gradient(135deg, var(--bg1), var(--bg2));
-      color:#fff;
+      color: #fff;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      padding: 16px;
     }
-    .card{
-      width:min(560px, 100%);
+    .tabs {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+    .tab-btn {
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #1a0a1f;
+    }
+    .card {
+      width: min(560px, 100%);
+      margin: 0 auto 20px;
       background: var(--card);
-      border-radius:24px;
-      padding:26px 22px;
+      border-radius: 24px;
+      padding: 22px 18px;
       box-shadow: 0 18px 60px rgba(0,0,0,.55);
-      border:1px solid rgba(255,255,255,.08);
-      margin-bottom:28px;
+      border: 1px solid rgba(255,255,255,.08);
     }
-    h1{
-      margin:0 0 6px;
-      font-size:22px;
-      color: var(--accent);
-      text-align:center;
+    h1 { margin: 0 0 8px; font-size: 22px; color: var(--accent); text-align: center; }
+    .sub { margin: 0 0 16px; font-size: 14px; opacity: .85; text-align: center; }
+    .counter { display: flex; gap: 10px; margin-bottom: 16px; }
+    .pill { flex: 1; background: rgba(255,255,255,.06); border-radius: 18px; padding: 14px 8px; text-align: center; border: 1px solid rgba(255,255,255,.1); }
+    .num { font-size: 32px; font-weight: 800; }
+    .lbl { font-size: 12px; opacity: .8; margin-top: 4px; }
+    .phrase { font-size: 16px; color: var(--accent2); text-align: center; margin: 10px 0; line-height: 1.4; }
+    .meta { font-size: 12px; opacity: .7; text-align: center; }
+    .song { margin-top: 14px; background: rgba(255,255,255,.06); border-radius: 18px; padding: 14px; border: 1px solid rgba(255,255,255,.1); }
+    .songHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+    .songTitle { font-weight: 700; margin: 0; }
+    .songArtist { font-size: 12px; opacity: .8; margin: 2px 0 0; }
+    iframe { width: 100%; height: 200px; border: 0; border-radius: 12px; }
+    button, .btn {
+      border: none; border-radius: 999px; padding: 10px 16px; cursor: pointer;
+      background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.18);
+      font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
     }
-    .sub{
-      margin:0 0 18px;
-      font-size:14px;
-      opacity:.85;
-      text-align:center;
+    button:hover, .btn:hover { background: rgba(255,255,255,.2); }
+    .footer { margin-top: 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 8px; }
+    .tag { padding: 6px 10px; border-radius: 999px; background: rgba(213,140,255,.12); border: 1px solid rgba(213,140,255,.25); }
+    .thing-card {
+      background: #fff;
+      color: #222;
+      border-radius: 20px;
+      padding: 28px 22px;
+      min-height: 180px;
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.5;
+      margin: 16px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
     }
-    .counter{
-      display:flex;
-      gap:10px;
-      justify-content:space-between;
-      margin-bottom:18px;
-    }
-    .pill{
-      flex:1;
-      background: rgba(255,255,255,.06);
-      border-radius:18px;
-      padding:14px 10px;
-      text-align:center;
-      border:1px solid rgba(255,255,255,.1);
-    }
-    .num{
-      font-size:34px;
-      font-weight:800;
-      line-height:1;
-    }
-    .lbl{
-      margin-top:6px;
-      font-size:12px;
-      opacity:.8;
-    }
-    .phrase{
-      font-size:16px;
-      line-height:1.45;
-      color: var(--accent2);
-      text-align:center;
-      margin:10px 0 6px;
-    }
-    .meta{
-      font-size:12px;
-      opacity:.7;
-      text-align:center;
-      margin:0 0 10px;
-    }
-    .song{
-      margin-top:14px;
-      background: rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:18px;
-      padding:14px;
-    }
-    .songHeader{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:10px;
-    }
-    .songTag{
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(213,140,255,.12);
-      border:1px solid rgba(213,140,255,.25);
-      font-size:12px;
-      white-space:nowrap;
-    }
-    .songTitle{
-      font-weight:800;
-      font-size:14px;
-      margin:0;
-    }
-    .songArtist{
-      margin:2px 0 0;
-      font-size:12px;
-      opacity:.8;
-    }
-    .playerWrap{
-      border-radius:12px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-    }
-    iframe{
-      width:100%;
-      height:220px;
-      border:0;
-      display:block;
-    }
-    .fallback{
-      display:none;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-    }
-    .fallbackRow{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-    .thumb{
-      width:120px;
-      height:68px;
-      border-radius:12px;
-      object-fit:cover;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.25);
-      flex:0 0 auto;
-    }
-    .fallbackText{
-      flex:1;
-      font-size:12px;
-      opacity:.85;
-      line-height:1.3;
-    }
-    .songActions{
-      display:flex;
-      gap:10px;
-      margin-top:10px;
-      justify-content:flex-end;
-      flex-wrap:wrap;
-    }
-    .footer{
-      margin-top:16px;
-      padding-top:14px;
-      border-top:1px solid rgba(255,255,255,.08);
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      font-size:12px;
-      flex-wrap:wrap;
-    }
-    .tag{
-      padding:8px 10px;
-      border-radius:999px;
-      background: rgba(213,140,255,.12);
-      border:1px solid rgba(213,140,255,.25);
-    }
-    button, a.btn{
-      border:none;
-      border-radius:999px;
-      padding:8px 12px;
-      cursor:pointer;
-      background: rgba(255,255,255,.12);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.18);
-      font-weight:600;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-    }
-
-    /* === FRASCO DE papelitos === */
-    .jar-section{
-      text-align:center;
-    }
-    .jar-container{
-      position:relative;
-      width:180px;
-      height:220px;
-      margin:20px auto;
-    }
-    .jar{
-      width:100%;
-      height:100%;
-      background:linear-gradient(180deg, rgba(213,140,255,.15), rgba(255,179,255,.08));
-      border:3px solid rgba(213,140,255,.4);
-      border-radius:30px 30px 50px 50px;
-      position:relative;
-      overflow:hidden;
-      box-shadow:inset 0 0 20px rgba(213,140,255,.2);
-    }
-    .jar::before{
-      content:"";
-      position:absolute;
-      top:-20px;
-      left:30%;
-      width:40%;
-      height:30px;
-      background:rgba(213,140,255,.3);
-      border-radius:10px 10px 0 0;
-      border:3px solid rgba(213,140,255,.5);
-    }
-    .paper{
-      position:absolute;
-      width:40px;
-      height:28px;
-      background:#fff8e7;
-      border-radius:4px;
-      box-shadow:1px 1px 3px rgba(0,0,0,.3);
-      transform:rotate(var(--r));
-    }
-    .drawn-paper{
-      background:#fff;
-      color:#333;
-      padding:20px;
-      border-radius:16px;
-      margin:16px 0;
-      min-height:100px;
-      box-shadow:0 8px 25px rgba(0,0,0,.4);
-      font-size:16px;
-      line-height:1.5;
-      border:2px solid var(--accent);
-      display:none;
-    }
-    .remaining{
-      font-size:13px;
-      opacity:.8;
-      margin:8px 0;
-    }
+    .thing-number { font-weight: 700; color: var(--accent); font-size: 14px; margin-bottom: 8px; }
+    .actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 12px; }
+    .remaining { text-align: center; font-size: 13px; opacity: .8; margin: 8px 0; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🖤💜 Manny → Kuromi 💜🖤</h1>
-    <p class="sub">
-      Eres el amor de mi vida. Ésta es una cuenta regresiva para verte el DE NUEVO 21 de diciembre. Cada día te quiero más.
-    </p>
-    <div class="counter">
-      <div class="pill">
-        <div class="num" id="days">—</div>
-        <div class="lbl">días</div>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('countdown', this)">⏳ Cuenta regresiva</button>
+    <button class="tab-btn" onclick="switchTab('things', this)">💌 100 cosas</button>
+  </div>
+
+  <!-- TAB 1 -->
+  <div id="countdown" class="tab-content active">
+    <div class="card">
+      <h1>🖤💜 Manny → Kuromi 💜🖤</h1>
+      <p class="sub">Cuenta regresiva para vernos el 21 de diciembre de 2026</p>
+      <div class="counter">
+        <div class="pill"><div class="num" id="days">—</div><div class="lbl">días</div></div>
+        <div class="pill"><div class="num" id="hours">—</div><div class="lbl">horas</div></div>
+        <div class="pill"><div class="num" id="mins">—</div><div class="lbl">min</div></div>
       </div>
-      <div class="pill">
-        <div class="num" id="hours">—</div>
-        <div class="lbl">horas</div>
-      </div>
-      <div class="pill">
-        <div class="num" id="mins">—</div>
-        <div class="lbl">min</div>
-      </div>
-    </div>
-    <p class="phrase" id="phrase">—</p>
-    <p class="meta" id="meta">—</p>
-    <div class="song">
-      <div class="songHeader">
-        <div>
-          <p class="songTitle" id="songTitle">🎵 Canción del día</p>
-          <p class="songArtist" id="songArtist">De amor para ti</p>
-        </div>
-        <div class="songTag" id="songTag">🎶 hoy</div>
-      </div>
-      <div class="playerWrap" id="playerWrap">
-        <iframe id="player" title="Song preview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        <div class="fallback" id="fallback">
-          <div class="fallbackRow">
-            <img class="thumb" id="thumb" alt="thumbnail" />
-            <div class="fallbackText" id="fallbackText">Tu celular bloqueó el preview. Abre la canción con el botón.</div>
+      <p class="phrase" id="phrase">—</p>
+      <p class="meta" id="meta">—</p>
+      <div class="song">
+        <div class="songHeader">
+          <div>
+            <p class="songTitle" id="songTitle">🎵 Canción del día</p>
+            <p class="songArtist" id="songArtist">—</p>
           </div>
         </div>
+        <iframe id="player" allowfullscreen></iframe>
+        <div style="margin-top:10px; text-align:right;">
+          <a class="btn" id="openYoutube" href="#" target="_blank">Abrir en YouTube</a>
+          <button onclick="copyPhrase()">Copiar frase</button>
+        </div>
       </div>
-      <div class="songActions">
-        <a class="btn" id="openYoutube" href="#" target="_blank" rel="noopener">Abrir en YouTube 🎬</a>
-        <button onclick="copyPhrase()">Copiar frase 💌</button>
+      <div class="footer">
+        <div class="tag">📅 21 de diciembre</div>
+        <div class="tag" id="countLabel">⏳ contando...</div>
       </div>
-    </div>
-    <div class="footer">
-      <div class="tag">📅 21 de diciembre</div>
-      <div class="tag" id="countLabel">⏳ contando...</div>
     </div>
   </div>
 
-  <!-- Frasco de 100 cosas -->
-  <div class="card jar-section">
-    <h1>💌 100 cosas que me gustan de ti</h1>
-    <p class="sub">Saca un papelito del frasco. Cada uno es único… y después de sacarlo, ya no vuelve a salir. Tómale foto 📸</p>
-    
-    <div class="jar-container">
-      <div class="jar" id="jar">
-        <!-- papelitos decorativos -->
-        <div class="paper" style="--r:-15deg; top:40px; left:30px;"></div>
-        <div class="paper" style="--r:25deg; top:70px; left:90px;"></div>
-        <div class="paper" style="--r:-5deg; top:100px; left:50px;"></div>
-        <div class="paper" style="--r:40deg; top:50px; left:110px;"></div>
-        <div class="paper" style="--r:10deg; top:130px; left:40px;"></div>
-        <div class="paper" style="--r:-30deg; top:90px; left:20px;"></div>
+  <!-- TAB 2 -->
+  <div id="things" class="tab-content">
+    <div class="card">
+      <h1>💌 100 cosas que me gustan de ti</h1>
+      <p class="sub">Saca una tarjeta. Cada una es única y puedes descargarla como imagen 4:3</p>
+      <p class="remaining" id="remainingText">Quedan 100</p>
+      <div class="thing-card" id="thingCard">
+        <div class="thing-number" id="thingNumber">—</div>
+        <div id="thingText">Toca “Sacar otra” para empezar</div>
+      </div>
+      <div class="actions">
+        <button onclick="drawThing()">Sacar otra ✨</button>
+        <button onclick="downloadPNG()">Descargar PNG 4:3</button>
       </div>
     </div>
-
-    <p class="remaining" id="remainingText">Quedan 100 papelitos</p>
-    <button id="drawBtn" onclick="drawPaper()">Sacar un papelito ✨</button>
-    
-    <div class="drawn-paper" id="drawnPaper"></div>
   </div>
 
   <script>
-    // ==========================
-    // CONFIG
-    // ==========================
+    // ==================== CONFIG ====================
     const targetDate = new Date("2026-12-21T00:00:00");
-    const TZ = "America/Chicago";
     const START_DAY_ISO = "2026-10-11";
 
-    // ==========================
-    // PHRASES (las originales, siguen perfectas)
-    // ==========================
-    const phrases = [
-      { text: "Kuromi, hoy Manny te piensa en modo: travieso, fiel y bien enamorado 🖤💜", source: "Manny → Kuromi" },
-      { text: "Falta menos para mi lugar favorito: tus brazos.", source: "Manny → Kuromi" },
-      { text: "Hoy me acuerdo de tu voz y se me arregla el día completo.", source: "Manny → Kuromi" },
-      { text: "Te elijo hoy, mañana y todos los días que falten.", source: "Manny → Kuromi" },
-      { text: "Mi plan malvado: verte, abrazarte… y repetir 😼💜", source: "Manny → Kuromi" },
-      { text: "Eres mi casualidad favorita convertida en destino.", source: "Manny → Kuromi" },
-      { text: "Kuromi: cada día menos… y cada día más enamorado.", source: "Manny → Kuromi" },
-      { text: "Cuando te vea, el mundo se va a quedar callado. Yo te abrazo.", source: "Manny → Kuromi" },
-      { text: "Eres la dueña de todos mis suspiros (y de mis travesuras).", source: "Manny → Kuromi" },
-      { text: "Mi corazón late en código morado por ti 💜", source: "Manny → Kuromi" },
-      // ... (se mantienen todas las frases originales que ya tenías)
-      // Para no alargar demasiado aquí, usa las que ya tenías en el código original.
-      // El sistema de día sigue funcionando igual.
+    // ==================== CANCIONES ====================
+    const songs = [
+      { id: "EU3LuPOYFu4", title: "Te Amo", artist: "Franco De Vita" },
+      { id: "8DE4H7bd0vs", title: "Amor Eterno", artist: "Rocío Dúrcal" },
+      { id: "opXPS4T9xC8", title: "Bésame Mucho", artist: "Andrea Bocelli" },
+      { id: "wTaj2HTa6jk", title: "Contigo Aprendí", artist: "Armando Manzanero" },
+      { id: "wOjzo02Tmck", title: "La Incondicional", artist: "Luis Miguel" },
+      { id: "-9l5t3MWss8", title: "Es Por Ti", artist: "Juanes" },
+      { id: "aHFAXW840uM", title: "Mi Historia Entre Tus Dedos", artist: "Gianluca Grignani" },
+      { id: "3E8i4zQ7z9U", title: "Amor", artist: "Cristian Castro" },
+      { id: "1zxiwjGDCm4", title: "El Triste", artist: "José José" },
+      { id: "DRcBwJJdUDc", title: "Si Nos Dejan", artist: "José Alfredo Jiménez" },
+      { id: "UJ07IIwHC5U", title: "La Nave del Olvido", artist: "José José" },
+      { id: "rNJn8dWjsCA", title: "Si Tú Me Dices Ven", artist: "Los Panchos" },
+      { id: "VkASk5ZQHRY", title: "Solamente Tú", artist: "Pablo Alborán" },
+      { id: "ARxl6giP1yU", title: "Rayito de Sol", artist: "Pablo Alborán" },
+      { id: "NZipBXsnYEE", title: "Vívela", artist: "Pablo Alborán" },
+      { id: "N0_fjJYFPX0", title: "Te He Querido Tanto", artist: "Paulina Rubio" },
+      { id: "fPczdTA1xU0", title: "Amor del Bueno", artist: "Reyli Barba" },
+      { id: "z3Vl53qXyXQ", title: "Amiga Mía", artist: "Alejandro Sanz" },
+      { id: "p06G8u1Qgfo", title: "Y Si Fuera Ella", artist: "Alejandro Sanz" },
+      { id: "2gTfde2npkM", title: "Corazón Partío", artist: "Alejandro Sanz" },
+      { id: "DPXHMBKY39M", title: "No Es Lo Mismo", artist: "Alejandro Sanz" },
+      { id: "TbblMCbJmMo", title: "Cuando Nadie Me Ve", artist: "Alejandro Sanz" },
+      { id: "wCdGS39d96w", title: "Quisiera Ser", artist: "Alejandro Sanz" },
+      { id: "y9OSMlifSsg", title: "El Alma al Aire", artist: "Alejandro Sanz" },
+      { id: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran" },
+      { id: "450p7goxZqg", title: "All of Me", artist: "John Legend" },
+      { id: "lp-EO5I60KA", title: "Thinking Out Loud", artist: "Ed Sheeran" },
+      { id: "rtOvBOTyX00", title: "A Thousand Years", artist: "Christina Perri" },
+      { id: "ShZ978fBl6Y", title: "You Are the Reason", artist: "Calum Scott" },
+      { id: "vGJTaP6anOU", title: "Can't Help Falling in Love", artist: "Elvis Presley" },
+      { id: "JGwWNGJdvx8", title: "Photograph", artist: "Ed Sheeran" },
+      { id: "1G4isV6iQAI", title: "The Way You Look Tonight", artist: "Frank Sinatra" },
+      { id: "k4V3Mo61fJM", title: "At Last", artist: "Etta James" },
+      { id: "Cxo4Y8z7z7M", title: "Make You Feel My Love", artist: "Adele" },
+      { id: "8z1Y4oFz3zE", title: "When I Fall in Love", artist: "Nat King Cole" },
+      { id: "q4zFz4Zf3zU", title: "L-O-V-E", artist: "Nat King Cole" },
+      { id: "3zZf3z3z3zI", title: "Unchained Melody", artist: "The Righteous Brothers" },
+      { id: "9z9z9z9z9zO", title: "I Will Always Love You", artist: "Whitney Houston" },
+      { id: "a1a1a1a1a1P", title: "I Just Called to Say I Love You", artist: "Stevie Wonder" },
+      { id: "b2b2b2b2b2Q", title: "Your Song", artist: "Elton John" },
+      { id: "c3c3c3c3c3R", title: "Heaven", artist: "Bryan Adams" },
+      { id: "d4d4d4d4d4S", title: "Everything I Do", artist: "Bryan Adams" },
+      { id: "e5e5e5e5e5T", title: "Iris", artist: "Goo Goo Dolls" },
+      { id: "f6f6f6f6f6U", title: "I Don't Want to Miss a Thing", artist: "Aerosmith" },
+      { id: "g7g7g7g7g7V", title: "Truly Madly Deeply", artist: "Savage Garden" },
+      { id: "h8h8h8h8h8W", title: "Eternal Flame", artist: "The Bangles" },
+      { id: "i9i9i9i9i9X", title: "I Have Nothing", artist: "Whitney Houston" },
+      { id: "j0j0j0j0j0Y", title: "Because You Loved Me", artist: "Celine Dion" },
+      { id: "k1k1k1k1k1Z", title: "My Heart Will Go On", artist: "Celine Dion" },
+      { id: "l2l2l2l2l2A", title: "Hero", artist: "Enrique Iglesias" },
+      { id: "m3m3m3m3m3B", title: "Bailamos", artist: "Enrique Iglesias" },
+      { id: "q7q7q7q7q7F", title: "Always", artist: "Bon Jovi" },
+      { id: "r8r8r8r8r8G", title: "I'll Be There", artist: "Michael Jackson" },
+      { id: "s9s9s9s9s9H", title: "Endless Love", artist: "Diana Ross & Lionel Richie" },
+      { id: "u1u1u1u1u1J", title: "I Want to Know What Love Is", artist: "Foreigner" },
+      { id: "v2v2v2v2v2K", title: "Faithfully", artist: "Journey" },
+      { id: "w3w3w3w3w3L", title: "Open Arms", artist: "Journey" },
+      { id: "c9c9c9c9c9R", title: "More Than Words", artist: "Extreme" },
+      { id: "e1e1e1e1e1T", title: "You're Beautiful", artist: "James Blunt" },
+      { id: "f2f2f2f2f2U", title: "Chasing Cars", artist: "Snow Patrol" },
+      { id: "g3g3g3g3g3V", title: "Yellow", artist: "Coldplay" },
+      { id: "h4h4h4h4h4W", title: "Fix You", artist: "Coldplay" },
+      { id: "i5i5i5i5i5X", title: "The Scientist", artist: "Coldplay" }
     ];
 
-    // ==========================
-    // CANCIONES DE AMOR (español + inglés, únicas)
-    // ==========================
-const songs = [
-  // Español
-  { id: "EU3LuPOYFu4", title: "Te Amo", artist: "Franco De Vita", tag: "🎶 hoy" },
-  { id: "8DE4H7bd0vs", title: "Amor Eterno", artist: "Rocío Dúrcal", tag: "🎶 hoy" },
-  { id: "opXPS4T9xC8", title: "Bésame Mucho", artist: "Andrea Bocelli", tag: "🎶 hoy" },
-  { id: "wTaj2HTa6jk", title: "Contigo Aprendí", artist: "Armando Manzanero", tag: "🎶 hoy" },
-  { id: "wOjzo02Tmck", title: "La Incondicional", artist: "Luis Miguel", tag: "🎶 hoy" },
-  { id: "-hoZpSoKAYE", title: "Entra en mi Vida", artist: "Sin Bandera", tag: "🎶 hoy" },
-  { id: "-9l5t3MWss8", title: "Es Por Ti", artist: "Juanes", tag: "🎶 hoy" },
-  { id: "aHFAXW840uM", title: "Mi Historia Entre Tus Dedos", artist: "Gianluca Grignani", tag: "🎶 hoy" },
-  { id: "4DO8GsIYfhQ", title: "Cuando Me Enamoro", artist: "Enrique Iglesias ft. Juan Luis Guerra", tag: "🎶 hoy" },
-  { id: "F0rwOsAteXM", title: "Solamente Tú", artist: "Pablo Alborán", tag: "🎶 hoy" },
-  { id: "KZh60U1PqSE", title: "Te Voy A Amar", artist: "Axel", tag: "🎶 hoy" },
-  { id: "UojBaKX5Vz4", title: "La Cosa Más Bella", artist: "Eros Ramazzotti", tag: "🎶 hoy" },
-  { id: "xftFxCYQTdk", title: "Mientes", artist: "Camila", tag: "🎶 hoy" },
-  { id: "7TWzV05kQ4w", title: "Ya Me Enteré", artist: "Reik", tag: "🎶 hoy" },
-  { id: "Z81hsLIY1sQ", title: "Hoy Tengo Ganas De Ti", artist: "Alejandro Fernández ft. Christina Aguilera", tag: "🎶 hoy" },
-  { id: "teprNzF6J1I", title: "En El Muelle De San Blás", artist: "Maná", tag: "🎶 hoy" },
-  { id: "sPTn0QEhxds", title: "Me Enamoré", artist: "Shakira", tag: "🎶 hoy" },
-  { id: "qExd-3oCTl4", title: "Colgando en tus manos", artist: "Carlos Baute ft. Marta Sánchez", tag: "🎶 hoy" },
-  { id: "taVlIW3G1VQ", title: "Y ¿Si Fuera Ella?", artist: "Alejandro Sanz", tag: "🎶 hoy" },
-  { id: "jwV_3cCNapk", title: "Rosas", artist: "La Oreja de Van Gogh", tag: "🎶 hoy" },
-  { id: "kAKVT1HWNsg", title: "A Puro Dolor", artist: "Son By Four", tag: "🎶 hoy" },
-  { id: "7IPVe1oywh0", title: "Te Extraño, Te Olvido, Te Amo", artist: "Ricky Martin", tag: "🎶 hoy" },
-  { id: "uMrN1W4ryoE", title: "Dejaría Todo", artist: "Chayanne", tag: "🎶 hoy" },
-  { id: "w4iGUWTkAvk", title: "Te Pienso Sin Querer", artist: "Franco De Vita", tag: "🎶 hoy" },
-  { id: "D9W4DLjmoOM", title: "Destino o Casualidad", artist: "Melendi ft. Ha*Ash", tag: "🎶 hoy" },
-  { id: "Uws510cVia4", title: "Lo Aprendí de Ti", artist: "Ha*Ash", tag: "🎶 hoy" },
-  { id: "G6fJreMyIks", title: "Burbujas de Amor", artist: "Juan Luis Guerra", tag: "🎶 hoy" },
-  { id: "yDKYK-9yh7o", title: "Si No Te Hubieras Ido", artist: "Marco Antonio Solís", tag: "🎶 hoy" },
-  { id: "6cjUGT6vcfU", title: "Eres", artist: "Café Tacvba", tag: "🎶 hoy" },
-  { id: "ytE0An3VjNg", title: "La Incondicional (versión alternativa)", artist: "Luis Miguel", tag: "🎶 hoy" },
-  { id: "Fbi481QFo4Y", title: "Abrázame Muy Fuerte", artist: "Juan Gabriel", tag: "🎶 hoy" },
-  { id: "4B-o8H7xDSk", title: "Vivir Sin Aire", artist: "Maná", tag: "🎶 hoy" },
-  { id: "5T56J3AfM6E", title: "A Dónde Vayas", artist: "Los Bukis", tag: "🎶 hoy" },
-  { id: "E-u_uSJcWm0", title: "Otra Como Tú", artist: "Eros Ramazzotti", tag: "🎶 hoy" },
-  { id: "44Qh0p9xE6o", title: "Amiga Mía", artist: "Alejandro Sanz", tag: "🎶 hoy" },
+    // ==================== FRASES ====================
+    const phrases = [
+      "Cada día que pasa es un día menos para abrazarte.",
+      "La distancia duele, pero tu voz la hace más llevadera.",
+      "Estoy contando los días para verte de nuevo.",
+      "Eres lo mejor que me ha pasado, aunque estemos lejos.",
+      "Pronto la cuenta regresiva llegará a cero… y yo estaré contigo.",
+      "Mientras tanto, te pienso en cada canción y en cada mensaje.",
+      "El 21 de diciembre no llega tan rápido como quisiera.",
+      "Tú haces que la espera valga la pena.",
+      "Te extraño todos los días, pero sé que el reencuentro va a ser hermoso.",
+      "Gracias por hacer que la distancia se sienta menos pesada."
+    ];
 
-  // Inglés
-  { id: "2Vv-BfVoq4g", title: "Perfect", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "450p7goxZqg", title: "All of Me", artist: "John Legend", tag: "🎶 hoy" },
-  { id: "lp-EO5I60KA", title: "Thinking Out Loud", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "rtOvBOTyX00", title: "A Thousand Years", artist: "Christina Perri", tag: "🎶 hoy" },
-  { id: "ShZ978fBl6Y", title: "You Are the Reason", artist: "Calum Scott", tag: "🎶 hoy" },
-  { id: "vGJTaP6anOU", title: "Can't Help Falling in Love", artist: "Elvis Presley", tag: "🎶 hoy" },
-  { id: "SlbfAYvA_gI", title: "Photograph", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "3JWTaaS7LdU", title: "I Will Always Love You", artist: "Whitney Houston", tag: "🎶 hoy" },
-  { id: "tP0zj220CbQ", title: "I Will Always Love You (audio)", artist: "Whitney Houston", tag: "🎶 hoy" },
-  { id: "ByfFurjQDb0", title: "You Are the Reason (Duet)", artist: "Calum Scott ft. Leona Lewis", tag: "🎶 hoy" },
-  { id: "eiDiKwbGfIY", title: "Perfect Symphony", artist: "Ed Sheeran ft. Andrea Bocelli", tag: "🎶 hoy" },
-  { id: "EkHTsc9PU2A", title: "I'm Yours", artist: "Jason Mraz", tag: "🎶 hoy" },
-  { id: "JGwWNGJdvx8", title: "Shape of You", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "iKzRIweSBLA", title: "Perfect (Lyric Video)", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "fdz_cabS9BU", title: "Thinking Out Loud (audio)", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "ORrFJ63nlcA", title: "Perfect (audio)", artist: "Ed Sheeran", tag: "🎶 hoy" },
-  { id: "sQtnhwU2R9Y", title: "All of Me (audio)", artist: "John Legend", tag: "🎶 hoy" },
-  { id: "k4V3Mo61fJM", title: "Can't Help Falling in Love (otra versión)", artist: "Elvis Presley", tag: "🎶 hoy" },
-  { id: "gNCxzbW9mtY", title: "Bésame Mucho", artist: "André Rieu", tag: "🎶 hoy" },
-  { id: "opXPS4T9xC8", title: "Bésame Mucho (Andrea Bocelli - ya usada, reemplazar si quieres)", artist: "Andrea Bocelli", tag: "🎶 hoy" },
-
-  // Más canciones de relleno romántico (puedes agregar o quitar)
-  { id: "rtOvBOTyX00", title: "A Thousand Years (ya incluida)", artist: "Christina Perri", tag: "🎶 hoy" },
-  { id: "ShZ978fBl6Y", title: "You Are the Reason (ya incluida)", artist: "Calum Scott", tag: "🎶 hoy" }
-];
-
-    // ==========================
-    // 100 COSAS QUE ME GUSTAN DE TI
-    // ==========================
+    // ==================== 100 COSAS ====================
     const things = [
       "Tu sentido del humor y cómo logras hacerme reír incluso a través de una pantalla.",
       "La inteligencia con la que te enfrentas los problemas.",
@@ -525,172 +333,152 @@ const songs = [
       "La ilusión de celebrar cada mes y cada aniversario juntos, aunque a veces sea a distancia.",
       "El respeto mutuo que es la base de nuestra relación.",
       "La familia (con hijos o mascotas) que me imagino a tu lado… cuando por fin estemos en el mismo lugar.",
-      "Que, de todas las personas en el mundo y a pesar de los kilómetros, nos hayamos elegido el uno al otro."
+      "Que, de todas las personas en el mundo y a pesar de los kilómetros, nos hayamos elegido el uno al otro.",
+      "Tu manera de cambiar mi vida por completo"
     ];
 
-    // ==========================
-    // LÓGICA DEL FRASCO
-    // ==========================
-    const STORAGE_KEY = "kuromiJarDrawn";
-    let drawnIndices = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    const STORAGE_KEY = "kuromiThingsDrawn";
+    let drawn = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    let currentIndex = -1;
 
     function updateRemaining() {
-      const left = things.length - drawnIndices.length;
-      document.getElementById("remainingText").textContent = 
-        left === 0 ? "¡Ya no quedan papelitos! Te quiero muchísimo 💜" : `Quedan ${left} papelitos`;
-      document.getElementById("drawBtn").disabled = left === 0;
+      const left = things.length - drawn.length;
+      document.getElementById("remainingText").textContent = left === 0 ? "¡Ya no quedan más! 💜" : `Quedan ${left}`;
     }
 
-    function drawPaper() {
-      const available = things.map((_, i) => i).filter(i => !drawnIndices.includes(i));
+    function drawThing() {
+      const available = things.map((_, i) => i).filter(i => !drawn.includes(i));
       if (available.length === 0) return;
-
-      const randomIndex = available[Math.floor(Math.random() * available.length)];
-      drawnIndices.push(randomIndex);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(drawnIndices));
-
-      const paperEl = document.getElementById("drawnPaper");
-      paperEl.style.display = "block";
-      paperEl.innerHTML = `<strong>${randomIndex + 1}.</strong> ${things[randomIndex]}`;
-      
+      currentIndex = available[Math.floor(Math.random() * available.length)];
+      drawn.push(currentIndex);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(drawn));
+      document.getElementById("thingNumber").textContent = `#${currentIndex + 1}`;
+      document.getElementById("thingText").textContent = things[currentIndex];
       updateRemaining();
     }
 
-    updateRemaining();
-
-    // ==========================
-    // RESTO DE LA LÓGICA ORIGINAL (adaptada)
-    // ==========================
-    function pad(n){ return String(n).padStart(2, "0"); }
-
-    function dayNumberForDateInTZ(date, tz = TZ) {
-      const parts = new Intl.DateTimeFormat("en-US", {
-        timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit",
-      }).formatToParts(date);
-      const y = Number(parts.find(p => p.type === "year").value);
-      const m = Number(parts.find(p => p.type === "month").value) - 1;
-      const d = Number(parts.find(p => p.type === "day").value);
-      return Math.floor(Date.UTC(y, m, d) / 86400000);
-    }
-
-    function dayNumberInTZ(tz = TZ) {
-      return dayNumberForDateInTZ(new Date(), tz);
-    }
-
-    const START_DAY_NUM = dayNumberForDateInTZ(new Date(`${START_DAY_ISO}T12:00:00`), TZ);
-
-    function dayIndexInTZ(dayNum = dayNumberInTZ()) {
-      return dayNum - START_DAY_NUM;
-    }
-
-    let lastDayNum = null;
-
-    function setDailyPhrase(dayIndex = dayIndexInTZ()){
-      // Usa las frases que ya tenías. Si quieres, puedo pegarte la lista completa.
-      // Por ahora el sistema está preparado.
-      if (phrases.length) {
-        const idx = ((dayIndex % phrases.length) + phrases.length) % phrases.length;
-        document.getElementById("phrase").innerText = phrases[idx].text;
-        document.getElementById("meta").innerText = phrases[idx].source;
+    function downloadPNG() {
+      if (currentIndex === -1) {
+        alert("Primero saca una tarjeta");
+        return;
       }
-    }
+      const canvas = document.createElement("canvas");
+      const w = 1200, h = 900;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext("2d");
 
-    function showFallback(reason){
-      const fb = document.getElementById("fallback");
-      const iframe = document.getElementById("player");
-      const txt = document.getElementById("fallbackText");
-      iframe.style.display = "none";
-      fb.style.display = "block";
-      txt.innerText = reason || "Preview bloqueado. Abre en YouTube.";
-    }
+      const gradient = ctx.createLinearGradient(0, 0, w, h);
+      gradient.addColorStop(0, "#1a0a22");
+      gradient.addColorStop(1, "#2a0f3a");
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, w, h);
 
-    function setDailySong(dayIndex = dayIndexInTZ()){
-      if (!songs.length) return;
-      const idx = ((dayIndex % songs.length) + songs.length) % songs.length;
-      const s = songs[idx];
+      ctx.strokeStyle = "rgba(213,140,255,0.4)";
+      ctx.lineWidth = 12;
+      ctx.strokeRect(30, 30, w - 60, h - 60);
 
-      document.getElementById("openYoutube").href = `https://www.youtube.com/watch?v=${encodeURIComponent(s.id)}`;
-      const dayLabel = dayIndex + 1;
-      document.getElementById("songTitle").innerText = `🎵 ${s.title}`;
-      document.getElementById("songArtist").innerText = s.artist || "—";
-      document.getElementById("songTag").innerText = (s.tag || "🎶 hoy") + ` · Día ${dayLabel}`;
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "center";
+      ctx.font = "bold 28px system-ui, Arial";
+      ctx.fillText(`#${currentIndex + 1}`, w / 2, 180);
 
-      const thumb = document.getElementById("thumb");
-      thumb.style.display = "block";
-      thumb.src = `https://i.ytimg.com/vi/${encodeURIComponent(s.id)}/hqdefault.jpg`;
-      thumb.onerror = () => { thumb.style.display = "none"; };
+      ctx.font = "32px system-ui, Arial";
+      wrapText(ctx, things[currentIndex], w / 2, 260, w - 180, 48);
 
-      const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(s.id)}?autoplay=0&rel=0`;
-      const iframe = document.getElementById("player");
-      iframe.style.display = "block";
-      document.getElementById("fallback").style.display = "none";
-      iframe.src = embedUrl;
+      ctx.font = "22px system-ui, Arial";
+      ctx.fillStyle = "rgba(255,255,255,0.7)";
+      ctx.fillText("Manny → Kuromi 💜", w / 2, h - 80);
 
-      let resolved = false;
-      const timer = setTimeout(() => {
-        if (!resolved) showFallback("Preview bloqueado en este navegador. Dale a “Abrir en YouTube” 💜");
-      }, 2200);
-
-      iframe.onload = () => {
-        resolved = true;
-        clearTimeout(timer);
+      const stamp = new Image();
+      stamp.crossOrigin = "anonymous";
+      stamp.src = "stamp.png";
+      stamp.onload = () => {
+        ctx.drawImage(stamp, 50, 50, 180, 180);
+        const link = document.createElement("a");
+        link.download = `kuromi-${currentIndex + 1}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
+      };
+      stamp.onerror = () => {
+        const link = document.createElement("a");
+        link.download = `kuromi-${currentIndex + 1}.png`;
+        link.href = canvas.toDataURL("image/png");
+        link.click();
       };
     }
 
-    function updateCounter(){
+    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(" ");
+      let line = "";
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + " ";
+        if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + " ";
+          y += lineHeight;
+        } else line = testLine;
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    // ==================== TABS ====================
+    function switchTab(tab, btn) {
+      document.querySelectorAll(".tab-content").forEach(el => el.classList.remove("active"));
+      document.querySelectorAll(".tab-btn").forEach(el => el.classList.remove("active"));
+      document.getElementById(tab).classList.add("active");
+      btn.classList.add("active");
+    }
+
+    // ==================== CUENTA REGRESIVA + CANCIÓN ====================
+    function updateCountdown() {
       const now = new Date();
-      const diff = targetDate.getTime() - now.getTime();
-      if (diff <= 0){
-        document.getElementById("days").innerText = "0";
-        document.getElementById("hours").innerText = "0";
-        document.getElementById("mins").innerText = "0";
-        document.getElementById("countLabel").innerText = "💜 ¡Hoy! 💜";
+      const diff = targetDate - now;
+      if (diff <= 0) {
+        document.getElementById("days").textContent = "0";
+        document.getElementById("hours").textContent = "0";
+        document.getElementById("mins").textContent = "0";
+        document.getElementById("countLabel").textContent = "¡Hoy nos vemos! 💜";
         return;
       }
-      const totalMins = Math.floor(diff / (1000*60));
-      const days = Math.floor(totalMins / (60*24));
-      const hours = Math.floor((totalMins - days*60*24) / 60);
-      const mins = totalMins - days*60*24 - hours*60;
-      document.getElementById("days").innerText = String(days);
-      document.getElementById("hours").innerText = pad(hours);
-      document.getElementById("mins").innerText = pad(mins);
-      document.getElementById("countLabel").innerText = "⏳ contando...";
+      const days = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins = Math.floor((diff % 3600000) / 60000);
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("mins").textContent = mins;
+      document.getElementById("countLabel").textContent = `${days} días restantes`;
     }
 
-    async function copyPhrase(){
-      const text = document.getElementById("phrase").innerText || "";
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch(e) {
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-      }
+    function getDayIndex() {
+      const start = new Date(START_DAY_ISO + "T00:00:00");
+      const now = new Date();
+      const diff = Math.floor((now - start) / 86400000);
+      return Math.max(0, diff);
     }
 
-    function tickDaily(){
-      const dayNum = dayNumberInTZ(); 
-      if (dayNum !== lastDayNum){
-        lastDayNum = dayNum;
-        const dayIndex = dayIndexInTZ(dayNum); 
-        setDailyPhrase(dayIndex);
-        setDailySong(dayIndex);
-      }
+    function updateSongAndPhrase() {
+      const idx = getDayIndex();
+      const song = songs[idx % songs.length];
+      const phrase = phrases[idx % phrases.length];
+
+      document.getElementById("phrase").textContent = phrase;
+      document.getElementById("meta").textContent = `Día ${idx + 1} • Canción ${idx % songs.length + 1} de ${songs.length}`;
+      document.getElementById("songTitle").textContent = song.title;
+      document.getElementById("songArtist").textContent = song.artist;
+      document.getElementById("player").src = `https://www.youtube.com/embed/${song.id}`;
+      document.getElementById("openYoutube").href = `https://youtu.be/${song.id}`;
     }
 
-    tickDaily();
-    updateCounter();
-    setInterval(updateCounter, 1000 * 10); 
-    setInterval(tickDaily, 30000);       
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden){
-        tickDaily();
-        updateCounter();
-      }
-    });
+    function copyPhrase() {
+      const text = document.getElementById("phrase").textContent;
+      navigator.clipboard.writeText(text).then(() => alert("Frase copiada 💜"));
+    }
+
+    updateCountdown();
+    updateSongAndPhrase();
+    updateRemaining();
+    setInterval(updateCountdown, 60000);
   </script>
 </body>
 </html>
