@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Un pequeño regalo para ti</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500&display=swap">
+<style>
+:root{--bg:#E9DEF7;--ink:#2E1A4A;--soft:#54406F;--rose:#B79CE0;--line:#B9A3D8;--card:#F5EEFB;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#231633;--ink:#F1E8FB;--soft:#D3C2EA;--rose:#C3A8EA;--line:#5E4A7D;--card:#302043;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#231633;--ink:#F1E8FB;--soft:#D3C2EA;--rose:#C3A8EA;--line:#5E4A7D;--card:#302043;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;min-height:100vh}
+main{max-width:640px;margin:0 auto;padding:40px 24px 56px;min-height:100vh;display:flex;flex-direction:column;justify-content:center;text-align:center}
+section[hidden]{display:none}
+section{animation:in .9s ease both}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){section{animation:none}.heart{animation:none}}
+.icons{display:flex;justify-content:center;align-items:center;gap:22px;margin-bottom:28px}
+.icons i{display:block;width:44px;height:1px;background:var(--line)}
+.eyebrow{font-size:13px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin:0 0 14px}
+h1,h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-style:italic;margin:0;line-height:1.05;color:var(--ink)}
+h1{font-size:clamp(40px,11vw,60px)}
+h2{font-size:clamp(34px,9vw,46px);margin-bottom:22px}
+.lead{font-size:18px;line-height:1.6;color:var(--soft);margin:20px 0 0}
+.small{font-size:14px;color:var(--soft);margin:12px 0 0}
+button.open{margin-top:34px;min-height:48px;padding:14px 32px;border-radius:999px;border:1.5px solid var(--rose);background:var(--rose);color:#1F1035;font:500 16px 'Inter',sans-serif;cursor:pointer;transition:transform .2s}
+button.open:hover{transform:scale(1.04)}
+button.open:focus-visible,a.song:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.heart{display:inline-block;animation:beat 1.8s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.18)}}
+.letter p{font-size:17px;line-height:1.75;color:var(--ink);margin:0 0 18px;text-align:left}
+.letter p.c{text-align:center;font-weight:500}
+.songcard{margin-top:30px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 22px}
+.songcard h3{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:500;font-size:30px;margin:0 0 8px;color:var(--ink)}
+.songcard p{margin:0 0 18px;font-size:15px;line-height:1.5;color:var(--soft)}
+a.song{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 28px;border-radius:999px;border:1.5px solid var(--rose);color:var(--ink);text-decoration:none;font-weight:500;font-size:15px}
+a.song:hover{background:var(--rose);color:#1F1035}
+</style>
+</head>
+<body>
+<main>
+<section id="cover">
+<div class="icons" aria-hidden="true">
+<svg width="72" height="48" viewBox="0 0 120 80"><ellipse cx="60" cy="58" rx="52" ry="14" fill="#E8C77A"/><path d="M28 56 C28 20 92 20 92 56 Z" fill="#F0D28A"/><path d="M29 46 Q60 54 91 46 L92 56 Q60 62 28 56 Z" fill="#C94A5A"/></svg>
+<i></i>
+<svg width="48" height="48" viewBox="0 0 100 100"><path d="M28 26 L22 6 L42 22 Z" fill="#5B4579"/><path d="M72 26 L78 6 L58 22 Z" fill="#5B4579"/><path d="M50 90 C10 60 6 32 28 26 C40 23 48 30 50 38 C52 30 60 23 72 26 C94 32 90 60 50 90 Z" fill="#B79CE0"/></svg>
+</div>
+<p class="eyebrow">un pequeño regalo para ti</p>
+<h1>Para mi persona favorita</h1>
+<p class="lead">Hay algo que quiero compartir contigo…</p>
+<p class="small">Hecho con mucho cariño, para nuestro día especial.</p>
+<div><button class="open" id="openBtn" type="button">Abrir mi regalo <span class="heart" aria-hidden="true">♡</span></button></div>
+<p class="small">hecho especialmente para ti ♡</p>
+</section>
+
+<section id="gift" class="letter" hidden>
+<h2>Para mi persona favorita.</h2>
+<p>Hay canciones que parecen escritas para alguien, y esta me recuerda a ti…</p>
+<p>Lo bonito es que esta canción tiene una historia especial para mí, porque te la dediqué incluso antes de que fuéramos pareja. En ese entonces quizá no imaginaba todo lo que llegaríamos a compartir, pero hoy me hace muy feliz escucharla y saber que, de alguna manera, ya formabas parte de mis pensamientos.</p>
+<p>Quiero aprovechar este día para recordarte lo mucho que te quiero y lo feliz que me hace tenerte en mi vida. Gracias por cada momento, cada sonrisa, cada conversación y por todo el cariño que compartimos.</p>
+<p class="c">¡Feliz aniversario, mi amor! ♡</p>
+<p>Espero que sigamos creando recuerdos juntos, compartiendo canciones y cumpliendo poquito a poquito todos nuestros sueños. Te amo muchísimo.</p>
+<div class="songcard">
+<h3>Nuestra canción</h3>
+<p>Una canción que te dediqué antes de que comenzara nuestra historia.</p>
+<a class="song" href="https://youtu.be/IbE7peGTpmc?si=xUsG2GtCdOwzQkt4" target="_blank" rel="noopener">▶ Escuchar nuestra canción</a>
+</div>
+</section>
+</main>
+<script>
+document.getElementById('openBtn').addEventListener('click',function(){
+document.getElementById('cover').hidden=true;
+var g=document.getElementById('gift');g.hidden=false;
+window.scrollTo(0,0);
+});
+</script>
+</body>
+</html>
